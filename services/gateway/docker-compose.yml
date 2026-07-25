@@ -1,0 +1,18 @@
+# Local development stack.
+# The deployed Postgres is VNet-isolated (no public access, by design —
+# threat model T-06/T-12), so local development uses a container-local
+# database. The deployed gateway in Container Apps reaches the real one
+# over the VNet.
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: aegis
+      POSTGRES_PASSWORD: aegis
+      POSTGRES_DB: aegis
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U aegis"]
+      interval: 5s
+      retries: 10

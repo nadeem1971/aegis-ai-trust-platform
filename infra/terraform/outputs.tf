@@ -17,3 +17,15 @@ output "container_app_environment_id" {
 output "log_analytics_workspace_id" {
   value = azurerm_log_analytics_workspace.main.id
 }
+
+output "openai_endpoint" {
+  value = data.azurerm_cognitive_account.shared_openai.endpoint
+}
+
+output "openai_deployment_name" {
+  value = azurerm_cognitive_deployment.chat.name
+}
+
+output "openai_model_pinned" {
+  value = "${var.openai_model_name}:${var.openai_model_version} (${var.openai_sku_name})"
+}
