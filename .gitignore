@@ -26,3 +26,7 @@ node_modules/
 
 # Terraform plan files
 *.tfplan
+
+# Test artifacts
+.coverage
+.pytest_cache/
